@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>R-Nombre del juego</title>
 </head>
 <body>
@@ -41,6 +41,27 @@
     <footer>
         <p>© 2024 Nombre del juego</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
+          authDomain: "quiztrivia-32d83.firebaseapp.com",
+          projectId: "quiztrivia-32d83",
+          storageBucket: "quiztrivia-32d83.appspot.com",
+          messagingSenderId: "5093975636",
+          appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+    <script src="../script.js"></script>
+
 </body>
 </html>
