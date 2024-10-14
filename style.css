@@ -1,0 +1,213 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #254441; /* Fondo oscuro */
+    color: #fff; /* Texto blanco */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+    padding: 20px;
+}
+
+nav {
+    background-color: #43AA8B; /* Color vibrante para el menú */
+    width: 100%;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #FF6F59; /* Color al pasar el ratón */
+}
+
+main {
+    flex: 1; /* Permitir que el main ocupe el espacio disponible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    background-color: #B2B09B; /* Fondo claro para el formulario */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: #DB504A; /* Título en color vibrante */
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #254441; /* Color para las etiquetas */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+    border: 2px solid #43AA8B; /* Borde color vibrante */
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff; /* Fondo blanco para inputs */
+    color: #254441; /* Texto oscuro */
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus {
+    border-color: #DB504A; /* Color al enfocar */
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin: 10px 0;
+}
+
+button {
+    background-color: #FF6F59; /* Botón color vibrante */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Espaciado entre botones */
+}
+
+button:hover {
+    background-color: #DB504A; /* Color más oscuro al pasar el ratón */
+}
+
+#googleLogin {
+    background-color: #43AA8B; /* Color de Google */
+}
+
+#googleLogin:hover {
+    background-color: #254441; /* Color más oscuro al pasar el ratón */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #FF6F59; /* Color para el pie de página */
+}
+
+#login {
+    text-align:center;
+    margin-top: 15px
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #254441; /* Fondo oscuro */
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden; /* Evitar desplazamiento */
+}
+
+header {
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out; /* Animación de entrada */
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #FF6F59; /* Título en color vibrante */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.start-button {
+    background-color: #43AA8B; /* Color vibrante */
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.start-button:hover {
+    background-color: #DB504A; /* Cambiar color al pasar el ratón */
+    transform: scale(1.1); /* Aumentar tamaño al pasar el ratón */
+}
+
+.features {
+    margin-top: 30px;
+}
+
+.feature-item {
+    background-color: #B2B09B; /* Fondo claro para las características */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px); /* Levantar el elemento al pasar el ratón */
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    color: #FF6F59;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
