@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>R-Nombre del juego</title>
+
+</head>
+
+<body>
+
+    <header>
+    </header>
+    <nav>
+    
+    </nav>
+    <main>
+        <section>
+            <h2>Iniciar Sesión</h2>
+            <form action="/login" method="POST">
+                <input type="text" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <div class="register-link">
+                <p>¿No tienes cuenta? <a href="./signup.html">Regístrate aquí</a></p>
+            </div>
+    </main>
+    <footer>
+        <p>© 2024 Nombre del juego</p>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+
+    <script src="./script.js"></script>
+</body>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
+          authDomain: "quiztrivia-32d83.firebaseapp.com",
+          projectId: "quiztrivia-32d83",
+          storageBucket: "quiztrivia-32d83.appspot.com",
+          messagingSenderId: "5093975636",
+          appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
+    <script src="../script.js"></script>
+
+</body>
+</html>
+
