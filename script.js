@@ -1,77 +1,77 @@
 //-------------------------------FIREBASE FORM-------------------------------------
 // Configuración de Firebase
-// let firebaseConfig = {
-//     apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
-//     authDomain: "quiztrivia-32d83.firebaseapp.com",
-//     projectId: "quiztrivia-32d83",
-//     storageBucket: "quiztrivia-32d83.appspot.com",
-//     messagingSenderId: "5093975636",
-//     appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
-//   };
-//   firebase.initializeApp(firebaseConfig);
+let firebaseConfig = {
+    apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
+    authDomain: "quiztrivia-32d83.firebaseapp.com",
+    projectId: "quiztrivia-32d83",
+    storageBucket: "quiztrivia-32d83.appspot.com",
+    messagingSenderId: "5093975636",
+    appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
+  };
+  firebase.initializeApp(firebaseConfig);
 
-//   const formdb = firebase.firestore();
+  const formdb = firebase.firestore();
   
 
-//   const addData = (user) => {
-//     formdb.collection("users")
-//       .add(user)
-//       .then((docRef) => {
-//         console.log("Document written with ID: ", docRef.id)
-//         readAll();
-//       })
-//       .catch((error) => console.error("Error adding document: ", error));
-//   };
+  const addData = (user) => {
+    formdb.collection("users")
+      .add(user)
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id)
+        readAll();
+      })
+      .catch((error) => console.error("Error adding document: ", error));
+  };
 
   
-//   const readAll = () => {
-//     // Limpia el album para mostrar el resultado
-//     cleanformdb();
+  const readAll = () => {
+    // Limpia el album para mostrar el resultado
+    cleanformdb();
   
-//     //Petición a Firestore para leer todos los documentos de la colección album
-//     formdb.collection("users")
-//       .get()
-//       .then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//            printForm(doc.data().nombre, doc.data().url, doc.id)
-//         });
+    //Petición a Firestore para leer todos los documentos de la colección album
+    formdb.collection("users")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+           printForm(doc.data().nombre, doc.data().url, doc.id)
+        });
   
-//       })
-//       .catch(() => console.log('Error reading documents'));;
-//   };
+      })
+      .catch(() => console.log('Error reading documents'));;
+  };
 
-//   const cleanformdb = () => {
-//     document.getElementById('formdb').innerHTML = "";
-//   };
+  const cleanformdb = () => {
+    document.getElementById('formdb').innerHTML = "";
+  };
   
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     // Obtener referencias a los elementos en HTML
-//     let formularioDeContacto = document.getElementById("formdb");
-//     // let listaDeContactos = document.getElementById("contactList");
-//     // let botonBorrarTodos = document.getElementById("clearAll");
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener referencias a los elementos en HTML
+    let formularioDeContacto = document.getElementById("formdb");
+    // let listaDeContactos = document.getElementById("contactList");
+    // let botonBorrarTodos = document.getElementById("clearAll");
     
-//     mostrarContactos(); // llamar para mostrar los contactos guardados al cargar la página
+    mostrarContactos(); // llamar para mostrar los contactos guardados al cargar la página
 
-//     // cuando el formulario se envía
-//     formularioDeContacto.addEventListener("submit", function(evento) {
-//         evento.preventDefault(); // evitar que la página se recargue
+    // cuando el formulario se envía
+    formularioDeContacto.addEventListener("submit", function(evento) {
+        evento.preventDefault(); // evitar que la página se recargue
         
-//         // obtener los valores que el usuario escribió
-//         let nombre = document.getElementById("name").value;
-//         let username = document.getElementById("username").value;
-//         let age = document.getElementById("age").value;
-//         let email = document.getElementById("email").value;
-//         let password= document.getElementById("password").value;
+        // obtener los valores que el usuario escribió
+        let nombre = document.getElementById("name").value;
+        let username = document.getElementById("username").value;
+        let age = document.getElementById("age").value;
+        let email = document.getElementById("email").value;
+        let password= document.getElementById("password").value;
 
         
-//             addData({
-//             name,
-//             username,
-//             age,
-//             email,
-//             password,
-//             });
+            addData({
+            name,
+            username,
+            age,
+            email,
+            password,
+            });
         
             
 
