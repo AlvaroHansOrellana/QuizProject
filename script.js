@@ -355,8 +355,14 @@ function verificarRespuesta(esCorrecta) {
 
 //  Muestra los resultaods al final 
 function mostrarResultados() {
+    
     document.getElementById('pregunta-texto').textContent = `¡Quiz terminado! Tu puntuación es ${puntuacion} de ${preguntas.length}.`;
     document.getElementById('opciones-lista').innerHTML = '';
+//-------------------MOSTRAR BOTONES EN PAGINA RESULTADOS----------------------
+    document.getElementById("botonera").style.display = "block";
+    // document.getElementById("estadisticas").style.display = "block";
+    // document.getElementById("borrarTodo").style.display = "block";
+
 }
 
 
@@ -444,3 +450,51 @@ document.getElementById("borrarTodo").addEventListener("click", function (event)
     }
     
 });
+//--Giancarlo
+document.addEventListener("DOMContentLoaded", function() {
+    // Botón de inicio de sesión
+    let buttonLogin = document.getElementById('toLogin');
+    if (buttonLogin) {
+        buttonLogin.addEventListener('click', function() {
+            console.log('Botón de login clicado!');
+            location.href = './login.html'; // Cambia la ruta si es necesario
+        });
+    } else {
+        console.error('No se encontró el botón con ID toLogin');
+    }
+
+    // Botón "Entrar"
+    let buttonQuiz = document.getElementById('toQuiz');
+    if (buttonQuiz) {
+        buttonQuiz.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            console.log('Botón de quiz clicado!');
+            location.href = './quiz.html'; // Cambia la ruta si es necesario
+        });
+    } else {
+        console.error('No se encontró el botón con ID toQuiz');
+    }
+
+    // Función para borrar un contacto
+    function borrarContacto(indice) {
+        let contactos = obtenerContactos();
+        contactos.splice(indice, 1); // quitar el contacto de la lista
+        localStorage.setItem("contactos", JSON.stringify(contactos)); // guardar la nueva lista en el almacenamiento local
+        mostrarContactos(); // volver a mostrar la lista de contactos actualizada
+    }
+
+    // Evento para borrar todos los contactos
+    let botonBorrarTodos = document.getElementById('botonBorrarTodos'); // Asegúrate de que este ID esté correcto
+    if (botonBorrarTodos) {
+        botonBorrarTodos.addEventListener("click", function() {
+            localStorage.removeItem("contactos"); // quitar todos los contactos del almacenamiento local
+            mostrarContactos(); // limpiar la lista en la pantalla
+        });
+    }
+});
+
+
+
+
+
+
