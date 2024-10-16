@@ -37,7 +37,7 @@ const readAll = () => {
             });
 
         })
-        .catch(() => console.log('Error reading documents'));;
+        .catch(() => console.log('Error reading documents'));
 };
 
 const cleanformdb = () => {
@@ -339,6 +339,56 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+        // Respuesta correcta
+        opciones.push(pregunta.correct_answer);
+
+        opciones = mezclarOpciones(opciones);
+        //iteramos sobre cada opción 
+        opciones.forEach((opcion) => {
+            let li = document.createElement('li');
+            //asignamos texto a cada opción 
+            li.textContent = opcion;
+            li.addEventListener('click', () => verificarRespuesta(opcion === pregunta.correct_answer));
+            opcionesLista.appendChild(li);
+        });
+    } else {
+        mostrarResultados();
+    }
+}
+
+
+function verificarRespuesta(esCorrecta) {
+    if (esCorrecta) {
+        puntuacion++;
+    }
+
+    //pasar a la siguiente pregunta y mostrarla
+    preguntaActual++;
+    mostrarPregunta();
+}
+
+//  Muestra los resultaods al final 
+function mostrarResultados() {
+    
+    document.getElementById('pregunta-texto').textContent = `¡Quiz terminado! Tu puntuación es ${puntuacion} de ${preguntas.length}.`;
+    document.getElementById('opciones-lista').innerHTML = '';
+//-------------------MOSTRAR BOTONES EN PAGINA RESULTADOS----------------------
+    document.getElementById("botonera").style.display = "block";
+    // document.getElementById("estadisticas").style.display = "block";
+    // document.getElementById("borrarTodo").style.display = "block";
+
+}
+
+
+iniciarQuiz();
+
+// ------------------------------------------------------------------------
+//-------------------GUARDAR PARTIDAS EN LOCALSTORAGE--------------------
+/*Almacenar la puntuación de cada partida en un array de objetos [{..},{..},{..}...{..}]
+ en Local Storage. Guardar puntuación y fecha en cada objeto del array
+*/
+document.getElementById("guardarPartida").addEventListener("click", function (event) {
+    event.preventDefault();
 
         async function iniciarQuiz() {
             //obtenemos las preguntas de la api 
@@ -406,6 +456,16 @@ document.addEventListener("DOMContentLoaded", function () {
         function mostrarResultados() {
             document.getElementById('pregunta-texto').textContent = `¡Quiz terminado! Tu puntuación es ${puntuacion} de ${preguntas.length}.`;
             document.getElementById('opciones-lista').innerHTML = '';
+
+            
+            //-------------------MOSTRAR BOTONES EN PAGINA RESULTADOS----------------------
+    document.getElementById("botonera").style.display = "block";
+    // document.getElementById("estadisticas").style.display = "block";
+    // document.getElementById("borrarTodo").style.display = "block";
+
+}
+
+
         }
 
 
@@ -418,6 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
         */
         document.getElementById("guardarPartida").addEventListener("click", function (event) {
             event.preventDefault();
+
             // Obtener valores
             const puntos = puntuacion;
             const fecha = Date.now();
@@ -434,10 +495,101 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem('game', JSON.stringify(game));
 
             alert("Partida guardada en LocalStorage");
+    
+        saveAndupdateGames(game);
+    });
 
 
 
+function saveAndupdateGames(game) {
+    games = JSON.parse(localStorage.getItem("Partidas"));
+    games.push(game);
+    localStorage.setItem("Partidas", JSON.stringify(games));
 
+}
+
+// ------------------------------------------------------------------------
+//-------------------REPRESENTAR GRAFICA LOCALSTORAGE----------------------
+
+/* Mostrar en la Home con una gráfica los resultados de las últimas partidas 
+jugadas (leer puntuaciones de LocalStorage). Representar Fecha(eje X) vs Puntuación(eje Y) */
+document.getElementById("estadisticas").addEventListener("click", function (event) {
+    event.preventDefault();
+    games = JSON.parse(localStorage.getItem("Partidas"));
+    let arrPuntuaciones =[];
+    let arrFechas =[];
+    games.forEach(item => {
+        arrPuntuaciones.push(item.puntuacion);
+        arrFechas.push(item.fecha);
+        //console.log(arrPuntuaciones) // push un array de datos
+    });
+    new Chartist.Line('.ct-chart', {
+        labels: arrFechas,
+        series: [
+          arrPuntuaciones
+        ]
+      }, {
+        fullWidth: true,
+        chartPadding: {
+          right: 40
+        }
+      });
+
+
+});
+document.getElementById("borrarTodo").addEventListener("click", function (event) {
+    event.preventDefault();
+    let confirmacion = confirm("Estás seguro?")
+
+    if (confirmacion) {
+
+        localStorage.clear();
+        alert("Todos los datos han sido borrados");
+    }
+    
+});
+//--Giancarlo
+document.addEventListener("DOMContentLoaded", function() {
+    // Botón de inicio de sesión
+    let buttonLogin = document.getElementById('toLogin');
+    if (buttonLogin) {
+        buttonLogin.addEventListener('click', function() {
+            console.log('Botón de login clicado!');
+            location.href = './login.html'; // Cambia la ruta si es necesario
+        });
+    } else {
+        console.error('No se encontró el botón con ID toLogin');
+    }
+
+    // Botón "Entrar"
+    let buttonQuiz = document.getElementById('toQuiz');
+    if (buttonQuiz) {
+        buttonQuiz.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+            console.log('Botón de quiz clicado!');
+            location.href = './quiz.html'; // Cambia la ruta si es necesario
+        });
+    } else {
+        console.error('No se encontró el botón con ID toQuiz');
+    }
+
+    // Función para borrar un contacto
+    function borrarContacto(indice) {
+        let contactos = obtenerContactos();
+        contactos.splice(indice, 1); // quitar el contacto de la lista
+        localStorage.setItem("contactos", JSON.stringify(contactos)); // guardar la nueva lista en el almacenamiento local
+        mostrarContactos(); // volver a mostrar la lista de contactos actualizada
+    }
+
+    // Evento para borrar todos los contactos
+    let botonBorrarTodos = document.getElementById('botonBorrarTodos'); // Asegúrate de que este ID esté correcto
+    if (botonBorrarTodos) {
+        botonBorrarTodos.addEventListener("click", function() {
+            localStorage.removeItem("contactos"); // quitar todos los contactos del almacenamiento local
+            mostrarContactos(); // limpiar la lista en la pantalla
+        });
+    }
+});
             saveAndupdateGames(game);
         });
 

@@ -188,8 +188,11 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
     margin-top: 15px; 
+    
 }
-
+section#botonera {
+display: none;
+}
 button:hover {
     background-color: #ae9436;
 }

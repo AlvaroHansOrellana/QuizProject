@@ -15,17 +15,25 @@
 
         <section class="preguntas">
 
-        <div class="ct-chart"></div>
+        
         <section id="quiz-container">
 
             <h2 id="pregunta-texto">Cargando pregunta...</h2>
             <ul id="opciones-lista"></ul>
         </section>
         <button id="siguiente-pregunta" style="display: none;">Siguiente Pregunta</button>
+        <section id="botonera">
+            <button id="guardarPartida"><span>Guardar Partida</span></button>
+            <button id="estadisticas"><span>Estadísticas</span></button>
+            <button id="borrarTodo"><span>Borrar Partidas</span></button>
+            <div class="ct-chart"></div>
+
+        </section>
        
     </main>
 
     <footer>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
         <button id="guardarPartida"><span>Guardar Partida</span></button>
         <button id="estadisticas"><span>Estadísticas</span></button>
         <button id="borrarTodo"><span>Borrar Partidas</span></button>
@@ -34,7 +42,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
-
+    
     </footer>
     <script src="/script.js"></script>
 </body>
