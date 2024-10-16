@@ -409,22 +409,28 @@ jugadas (leer puntuaciones de LocalStorage). Representar Fecha(eje X) vs Puntuac
 document.getElementById("estadisticas").addEventListener("click", function (event) {
     event.preventDefault();
     games = JSON.parse(localStorage.getItem("Partidas"));
+    let arrPuntuaciones =[];
+    let arrFechas =[];
     games.forEach(item => {
-        const arrPuntuaciones = [item.puntuacion];
-        const arrFechas = [item.fecha];
+        arrPuntuaciones.push(item.puntuacion);
+        arrFechas.push(item.fecha);
         //console.log(arrPuntuaciones) // push un array de datos
-        new Chartist.Line('.ct-chart', {
-            labels: [arrFechas],
-            series: [
-              [arrPuntuaciones]
-            ]
-          }, {
-            fullWidth: false,
-            chartPadding: {
-              right: 40
-            }
-          });
     });
+    new Chartist.Line('.ct-chart', {
+        labels: arrFechas,
+        series: [
+          arrPuntuaciones
+        ]
+      }, {
+        fullWidth: true,
+        chartPadding: {
+          right: 40
+        }
+      });
+
+
+
+
 
 });
 document.getElementById("borrarTodo").addEventListener("click", function (event) {
