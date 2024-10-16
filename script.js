@@ -426,6 +426,10 @@ document.getElementById("estadisticas").addEventListener("click", function (even
           });
     });
 
+
+
+
+
 });
 document.getElementById("borrarTodo").addEventListener("click", function (event) {
     event.preventDefault();
