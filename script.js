@@ -1,165 +1,165 @@
 //-------------------------------FIREBASE FORM-------------------------------------
 // Configuración de Firebase
-let firebaseConfig = {
-    apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
-    authDomain: "quiztrivia-32d83.firebaseapp.com",
-    projectId: "quiztrivia-32d83",
-    storageBucket: "quiztrivia-32d83.appspot.com",
-    messagingSenderId: "5093975636",
-    appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
-  };
-  firebase.initializeApp(firebaseConfig);
+// let firebaseConfig = {
+//     apiKey: "AIzaSyBazEJwCXDWQZdhWN3JWyN6JDcaxOGp4mI",
+//     authDomain: "quiztrivia-32d83.firebaseapp.com",
+//     projectId: "quiztrivia-32d83",
+//     storageBucket: "quiztrivia-32d83.appspot.com",
+//     messagingSenderId: "5093975636",
+//     appId: "1:5093975636:web:42c36e4af7e22e01716fc1"
+//   };
+//   firebase.initializeApp(firebaseConfig);
 
-  const formdb = firebase.firestore();
+//   const formdb = firebase.firestore();
   
 
-  const addData = (user) => {
-    formdb.collection("users")
-      .add(user)
-      .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id)
-        readAll();
-      })
-      .catch((error) => console.error("Error adding document: ", error));
-  };
+//   const addData = (user) => {
+//     formdb.collection("users")
+//       .add(user)
+//       .then((docRef) => {
+//         console.log("Document written with ID: ", docRef.id)
+//         readAll();
+//       })
+//       .catch((error) => console.error("Error adding document: ", error));
+//   };
 
   
-  const readAll = () => {
-    // Limpia el album para mostrar el resultado
-    cleanformdb();
+//   const readAll = () => {
+//     // Limpia el album para mostrar el resultado
+//     cleanformdb();
   
-    //Petición a Firestore para leer todos los documentos de la colección album
-    formdb.collection("users")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-           printForm(doc.data().nombre, doc.data().url, doc.id)
-        });
+//     //Petición a Firestore para leer todos los documentos de la colección album
+//     formdb.collection("users")
+//       .get()
+//       .then((querySnapshot) => {
+//         querySnapshot.forEach((doc) => {
+//            printForm(doc.data().nombre, doc.data().url, doc.id)
+//         });
   
-      })
-      .catch(() => console.log('Error reading documents'));;
-  };
+//       })
+//       .catch(() => console.log('Error reading documents'));;
+//   };
 
-  const cleanformdb = () => {
-    document.getElementById('formdb').innerHTML = "";
-  };
+//   const cleanformdb = () => {
+//     document.getElementById('formdb').innerHTML = "";
+//   };
   
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Obtener referencias a los elementos en HTML
-    let formularioDeContacto = document.getElementById("formdb");
-    // let listaDeContactos = document.getElementById("contactList");
-    // let botonBorrarTodos = document.getElementById("clearAll");
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Obtener referencias a los elementos en HTML
+//     let formularioDeContacto = document.getElementById("formdb");
+//     // let listaDeContactos = document.getElementById("contactList");
+//     // let botonBorrarTodos = document.getElementById("clearAll");
     
-    mostrarContactos(); // llamar para mostrar los contactos guardados al cargar la página
+//     mostrarContactos(); // llamar para mostrar los contactos guardados al cargar la página
 
-    // cuando el formulario se envía
-    formularioDeContacto.addEventListener("submit", function(evento) {
-        evento.preventDefault(); // evitar que la página se recargue
+//     // cuando el formulario se envía
+//     formularioDeContacto.addEventListener("submit", function(evento) {
+//         evento.preventDefault(); // evitar que la página se recargue
         
-        // obtener los valores que el usuario escribió
-        let nombre = document.getElementById("name").value;
-        let username = document.getElementById("username").value;
-        let age = document.getElementById("age").value;
-        let email = document.getElementById("email").value;
-        let password= document.getElementById("password").value;
+//         // obtener los valores que el usuario escribió
+//         let nombre = document.getElementById("name").value;
+//         let username = document.getElementById("username").value;
+//         let age = document.getElementById("age").value;
+//         let email = document.getElementById("email").value;
+//         let password= document.getElementById("password").value;
 
         
-            addData({
-            name,
-            username,
-            age,
-            email,
-            password,
-            });
+//             addData({
+//             name,
+//             username,
+//             age,
+//             email,
+//             password,
+//             });
         
             
 
-//Función auxiliar para pintar una foto en el album
-// const printForm = (nombre, email, mensaje, urlImagen, docId) => {
-//   let card = document.createElement('article');
-//   card.setAttribute('class', 'card');
-//   let picture = document.createElement('img');
-//   picture.setAttribute('src', url);
-//   picture.setAttribute('style', 'max-width:250px');
-//   let caption = document.createElement('p');
-//   caption.innerHTML = nombre;
-//   let id = document.createElement('p');
-//   id.innerHTML = docId;
-//   const users = document.getElementById('usuarios');
-//   card.appendChild(picture);
-//   card.appendChild(caption);
-//   card.appendChild(id);
-//   usuarios.appendChild(card);
-    });
+// //Función auxiliar para pintar una foto en el album
+// // const printForm = (nombre, email, mensaje, urlImagen, docId) => {
+// //   let card = document.createElement('article');
+// //   card.setAttribute('class', 'card');
+// //   let picture = document.createElement('img');
+// //   picture.setAttribute('src', url);
+// //   picture.setAttribute('style', 'max-width:250px');
+// //   let caption = document.createElement('p');
+// //   caption.innerHTML = nombre;
+// //   let id = document.createElement('p');
+// //   id.innerHTML = docId;
+// //   const users = document.getElementById('usuarios');
+// //   card.appendChild(picture);
+// //   card.appendChild(caption);
+// //   card.appendChild(id);
+// //   usuarios.appendChild(card);
+//     });
 
-        /*
-        // crear un objeto con los datos del contacto
-        let contacto = {
-            nombre: nombre,
-            email: email,
-            mensaje: mensaje,
-            urlImagen: urlImagen
-        };
-        */
-       //// array con los objetos
-        // const contacto = { nombre, email, mensaje, urlImagen };
-        // guardarContacto(contacto);
-        formularioDeContacto.reset(); // reiniciar el formulario
-        mostrarContactos(); // actualizar la lista
-    });
+//         /*
+//         // crear un objeto con los datos del contacto
+//         let contacto = {
+//             nombre: nombre,
+//             email: email,
+//             mensaje: mensaje,
+//             urlImagen: urlImagen
+//         };
+//         */
+//        //// array con los objetos
+//         // const contacto = { nombre, email, mensaje, urlImagen };
+//         // guardarContacto(contacto);
+//         formularioDeContacto.reset(); // reiniciar el formulario
+//         mostrarContactos(); // actualizar la lista
+//     });
         
-    // // función para guardar el contacto en el almacenamiento local
-    // function guardarContacto(contacto) {
-    //     let contactosGuardados = obtenerContactos();
-    //     contactosGuardados.push(contacto); // añadir el nuevo contacto al array
-    //     localStorage.setItem("contactos", JSON.stringify(contactosGuardados)); // guardar el array en localStorage
-    // }
+//     // // función para guardar el contacto en el almacenamiento local
+//     // function guardarContacto(contacto) {
+//     //     let contactosGuardados = obtenerContactos();
+//     //     contactosGuardados.push(contacto); // añadir el nuevo contacto al array
+//     //     localStorage.setItem("contactos", JSON.stringify(contactosGuardados)); // guardar el array en localStorage
+//     // }
 
 
 
-    // función para obtener los contactos guardados del almacenamiento local
-    function obtenerContactos() {
-        let contactosEnStorage = localStorage.getItem("contactos");
-        if (contactosEnStorage === null) {
-            return []; // Si no hay contactos, devolver un array vacío
-        } else {
-            return JSON.parse(contactosEnStorage); // convertir los contactos de texto a un array
-        }
-    }
+//     // función para obtener los contactos guardados del almacenamiento local
+//     function obtenerContactos() {
+//         let contactosEnStorage = localStorage.getItem("contactos");
+//         if (contactosEnStorage === null) {
+//             return []; // Si no hay contactos, devolver un array vacío
+//         } else {
+//             return JSON.parse(contactosEnStorage); // convertir los contactos de texto a un array
+//         }
+//     }
 
-    // función para mostrar los contactos guardados
-    function mostrarContactos() {
-        let contactos = obtenerContactos();
-        // listaDeContactos.innerHTML = ""; // limpiar la lista de contactos antes de mostrar los nuevos
+//     // función para mostrar los contactos guardados
+//     function mostrarContactos() {
+//         let contactos = obtenerContactos();
+//         // listaDeContactos.innerHTML = ""; // limpiar la lista de contactos antes de mostrar los nuevos
 
-        // recorrer todos los contactos y mostrarlos
-        for (let i = 0; i < contactos.length; i++) {
-            let contacto = contactos[i];
-            let elementoLista = document.createElement("li");
+//         // recorrer todos los contactos y mostrarlos
+//         for (let i = 0; i < contactos.length; i++) {
+//             let contacto = contactos[i];
+//             let elementoLista = document.createElement("li");
             
-            let contenidoContacto = "<strong>" + contacto.nombre + "</strong> (" + contacto.email + ")<br>" + contacto.mensaje; // crear el contenido del contacto
+//             let contenidoContacto = "<strong>" + contacto.nombre + "</strong> (" + contacto.email + ")<br>" + contacto.mensaje; // crear el contenido del contacto
             
-            // // mostrar la imagen si hay una URL
-            // if (contacto.urlImagen !== "") {
-            //     contenidoContacto += "<br><img src='" + contacto.urlImagen + "' alt='Imagen de contacto' width='50'>";
-            // }
+//             // // mostrar la imagen si hay una URL
+//             // if (contacto.urlImagen !== "") {
+//             //     contenidoContacto += "<br><img src='" + contacto.urlImagen + "' alt='Imagen de contacto' width='50'>";
+//             // }
             
-            elementoLista.innerHTML = contenidoContacto;
+//             elementoLista.innerHTML = contenidoContacto;
 
-            // este es el botón para borrar
-            let botonBorrar = document.createElement("button");
-            botonBorrar.textContent = "Borrar";
-            botonBorrar.dataset.indice = i; // guardar el índice del contacto en el botón
+//             // este es el botón para borrar
+//             let botonBorrar = document.createElement("button");
+//             botonBorrar.textContent = "Borrar";
+//             botonBorrar.dataset.indice = i; // guardar el índice del contacto en el botón
 
-            // cuando se hace clic en el botón de borrar
-            botonBorrar.addEventListener("click", function() {
-                let indice = this.dataset.indice;
-                borrarContacto(indice);
-            });
+//             // cuando se hace clic en el botón de borrar
+//             botonBorrar.addEventListener("click", function() {
+//                 let indice = this.dataset.indice;
+//                 borrarContacto(indice);
+//             });
 
-            // añadir el botón al elemento de la lista
-            elementoLista.appendChild(botonBorrar);
+//             // añadir el botón al elemento de la lista
+//             elementoLista.appendChild(botonBorrar);
 
             // añadir el contacto a la lista
             listaDeContactos.appendChild(elementoLista);
@@ -210,6 +210,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+//             // añadir el contacto a la lista
+//             listaDeContactos.appendChild(elementoLista);
+//         }
+//     }
+
+//     // función para borrar un contacto
+//     function borrarContacto(indice) {
+//         let contactos = obtenerContactos();
+//         contactos.splice(indice, 1); // quitar el contacto de la lista
+//         localStorage.setItem("contactos", JSON.stringify(contactos)); // guardar la nueva lista en el almacenamiento local
+//         mostrarContactos(); // volver a mostrar la lista de contactos actualizada
+//     }
+
+    // evento para borrar todos los contactos
+    // botonBorrarTodos.addEventListener("click", function() {
+    //     localStorage.removeItem("contactos"); // quitar todos los contactos del almacenamiento local
+    //     mostrarContactos(); // limpiar la lista en la pantalla
+    // });
 //-------------------------------FIN----------------------------------
 
 
@@ -440,22 +458,28 @@ jugadas (leer puntuaciones de LocalStorage). Representar Fecha(eje X) vs Puntuac
 document.getElementById("estadisticas").addEventListener("click", function (event) {
     event.preventDefault();
     games = JSON.parse(localStorage.getItem("Partidas"));
+    let arrPuntuaciones =[];
+    let arrFechas =[];
     games.forEach(item => {
-        const arrPuntuaciones = [item.puntuacion];
-        const arrFechas = [item.fecha];
+        arrPuntuaciones.push(item.puntuacion);
+        arrFechas.push(item.fecha);
         //console.log(arrPuntuaciones) // push un array de datos
-        new Chartist.Line('.ct-chart', {
-            labels: [arrFechas],
-            series: [
-              [arrPuntuaciones]
-            ]
-          }, {
-            fullWidth: false,
-            chartPadding: {
-              right: 40
-            }
-          });
     });
+    new Chartist.Line('.ct-chart', {
+        labels: arrFechas,
+        series: [
+          arrPuntuaciones
+        ]
+      }, {
+        fullWidth: true,
+        chartPadding: {
+          right: 40
+        }
+      });
+
+
+
+
 
 });
 document.getElementById("borrarTodo").addEventListener("click", function (event) {
