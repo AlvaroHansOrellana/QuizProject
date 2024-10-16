@@ -111,9 +111,9 @@ document.addEventListener("DOMContentLoaded", function() {
 let preguntas = []; //array pregutas obtenidas api
 let preguntaActual = 0; //índice de preguntas
 let puntuacion = 0; //se guarda la puntutación de las preguntas (pocentaje)
-let games = [];//se guardan las puntuaciones y fechas de partida.
+let games=[];//se guardan las puntuaciones y fechas de partida.
 if (games.length === 0){ //comprobacion de localStorage
-        contacts = [];
+        games = [];
  }
 
 
@@ -213,7 +213,7 @@ document.getElementById("guardarPartida").addEventListener("click", function (ev
             const puntos = puntuacion;
             const fecha = Date.now();
             const fechaConv = Date(fecha*1000).toString();
-            
+            //aqui convertir mes dia anio con new date etc
 
             // Crear un objeto de usuario
             let game = { 
@@ -228,22 +228,19 @@ document.getElementById("guardarPartida").addEventListener("click", function (ev
 
             
 
-        guardarGame(game);
+        
+        saveAndupdateGames(game);
     });
 
-function guardarGame(game) {
-    games.push(game);
-    // Transformar el array a String y subirlo a Web Storage
-    updateGames(games);
-}
 
-function updateGames(games) {
+
+function saveAndupdateGames(game) {
+    games = JSON.parse(localStorage.getItem("Partidas"));
+    games.push(game);
     localStorage.setItem("Partidas", JSON.stringify(games));
 
 }
-function getGames() {
-    let partidasGuardadas = JSON.parse(localStorage.getItem("Partidas"));
-}
+
 // ------------------------------------------------------------------------
 //-------------------REPRESENTAR GRAFICA LOCALSTORAGE----------------------
 
@@ -251,9 +248,33 @@ function getGames() {
 jugadas (leer puntuaciones de LocalStorage). Representar Fecha(eje X) vs Puntuación(eje Y) */
 document.getElementById("estadisticas").addEventListener("click", function (event) {
     event.preventDefault();
-    getGames()
+    games = JSON.parse(localStorage.getItem("Partidas"));
+    games.forEach(item => {
+        const arrPuntuaciones = [item.puntuacion];
+        const arrFechas = [item.fecha];
+        //console.log(arrPuntuaciones) // push un array de datos
+        new Chartist.Line('.ct-chart', {
+            labels: [arrFechas],
+            series: [
+              [arrPuntuaciones]
+            ]
+          }, {
+            fullWidth: false,
+            chartPadding: {
+              right: 40
+            }
+          });
+    });
 
+});
+document.getElementById("borrarTodo").addEventListener("click", function (event) {
+    event.preventDefault();
+    let confirmacion = confirm("Estás seguro?")
 
+    if (confirmacion) {
 
-
+        localStorage.clear();
+        alert("Todos los datos han sido borrados");
+    }
+    
 });
