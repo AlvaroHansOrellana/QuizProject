@@ -360,13 +360,21 @@ function mostrarResultados() {
     document.getElementById('opciones-lista').innerHTML = '';
 //-------------------MOSTRAR BOTONES EN PAGINA RESULTADOS----------------------
     document.getElementById("botonera").style.display = "block";
-    // document.getElementById("estadisticas").style.display = "block";
-    // document.getElementById("borrarTodo").style.display = "block";
+    document.getElementById("graficaContainer").style.display = "block";
+    
 
 }
 
 
 iniciarQuiz();
+
+// ------------------------------------------------------------------------
+//-------------------JUGAR OTRA VEZ?---------------------------------------
+document.getElementById("jugarAgain").addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.href="/pages/quiz.html"
+});
+
 
 // ------------------------------------------------------------------------
 //-------------------GUARDAR PARTIDAS EN LOCALSTORAGE--------------------
@@ -410,8 +418,6 @@ function saveAndupdateGames(game) {
 // ------------------------------------------------------------------------
 //-------------------REPRESENTAR GRAFICA LOCALSTORAGE----------------------
 
-/* Mostrar en la Home con una gráfica los resultados de las últimas partidas 
-jugadas (leer puntuaciones de LocalStorage). Representar Fecha(eje X) vs Puntuación(eje Y) */
 document.getElementById("estadisticas").addEventListener("click", function (event) {
     event.preventDefault();
     games = JSON.parse(localStorage.getItem("Partidas"));
@@ -420,8 +426,9 @@ document.getElementById("estadisticas").addEventListener("click", function (even
     games.forEach(item => {
         arrPuntuaciones.push(item.puntuacion);
         arrFechas.push(item.fecha);
-        //console.log(arrPuntuaciones) // push un array de datos
+        
     });
+    //-------------------------------> Formatear FECHAS
     new Chartist.Line('.ct-chart', {
         labels: arrFechas,
         series: [
@@ -435,8 +442,8 @@ document.getElementById("estadisticas").addEventListener("click", function (even
       });
 
 
-
-
+      //para mostrar la grafica en el dom(Solucion provisional testing)
+      document.getElementById("graficaContainer").style.opacity= "100";
 
 });
 document.getElementById("borrarTodo").addEventListener("click", function (event) {

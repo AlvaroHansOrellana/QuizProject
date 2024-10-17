@@ -193,6 +193,16 @@ button {
 section#botonera {
 display: none;
 }
+
+section#graficaContainer {
+    margin-top: 10px;
+    border-radius: 8px;
+    display: none;
+    background-color: #fff;
+    opacity: 0;
+    padding: 2%;
+}
+
 button:hover {
     background-color: #ae9436;
 }
