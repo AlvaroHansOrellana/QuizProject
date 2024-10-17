@@ -271,11 +271,13 @@ document.addEventListener("DOMContentLoaded", function() {
 let preguntas = []; //array pregutas obtenidas api
 let preguntaActual = 0; //índice de preguntas
 let puntuacion = 0; //se guarda la puntutación de las preguntas (pocentaje)
-let games=[];//se guardan las puntuaciones y fechas de partida.
-if (games.length === 0){ //comprobacion de localStorage
-        games = [];
- }
-
+let games = JSON.parse(localStorage.getItem("Partidas"));
+if (games.length === 0){
+games=[];//se guardan las puntuaciones y fechas de partida.
+localStorage.setItem("Partidas", JSON.stringify(games))
+} else {
+    games = JSON.parse(localStorage.getItem("Partidas"))
+}
 
 async function obtenerPreguntas() {
     try {
@@ -390,8 +392,9 @@ document.getElementById("guardarPartida").addEventListener("click", function (ev
 
             // Guardar en localStorage
             localStorage.setItem('game', JSON.stringify(game));
+            
 
-            alert("Partida guardada en LocalStorage");
+            alert("Partida guardada con éxito");
 
             
 
@@ -437,23 +440,27 @@ document.getElementById("estadisticas").addEventListener("click", function (even
 
 
       document.getElementById("graficaContainer").style.opacity = "100";
+      document.getElementById("graficaContainer").style.display = "block";
 
 
 });
-document.getElementById("borrarTodo").addEventListener("click", function (event) {
-    event.preventDefault();
-    let confirmacion = confirm("Estás seguro?")
+// document.getElementById("borrarTodo").addEventListener("click", function (event) {
+//     event.preventDefault();
+//     let confirmacion = confirm("Estás seguro?")
 
-    if (confirmacion) {
+//     if (confirmacion) {
 
-        localStorage.clear();
-        alert("Todos los datos han sido borrados");
-    }
+//         localStorage.clear();
+//         alert("Todos los datos han sido borrados");
+//         localStorage.setItem("Partidas");
+        
+//     }
     
-});
+// });
 document.getElementById("jugarAgain").addEventListener("click", function (event) {
     event.preventDefault();
     window.location.href = "./quiz.html"
+    games = JSON.parse(localStorage.getItem("Partidas"))
 });
 //--Giancarlo
 document.addEventListener("DOMContentLoaded", function() {
@@ -474,7 +481,7 @@ document.addEventListener("DOMContentLoaded", function() {
         buttonQuiz.addEventListener('click', function(event) {
             event.preventDefault(); // Evita el envío del formulario
             console.log('Botón de quiz clicado!');
-            location.href = './quiz.html'; // Cambia la ruta si es necesario
+            window.location.href = './quiz.html'; // Cambia la ruta si es necesario
         });
     } else {
         console.error('No se encontró el botón con ID toQuiz');
@@ -497,4 +504,23 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
-//c espacio
+//c espacio 17/10
+//----------MUSICA MAESTRO----------------
+const musicaFondo = new Audio('/media/loopquizproject.mp3');
+musicaFondo.loop = true; // Opcional: para que la música se repita
+
+if (window.location.href.includes('quiz.html')) {
+    function iniciarMusica() {
+        musicaFondo.play().catch(error => {
+            console.error("No se pudo reproducir la música:", error);
+        });
+    }
+
+    iniciarMusica();
+
+    // Detener la música si se navega a otra página (opcional)
+    window.addEventListener('beforeunload', () => {
+        musicaFondo.pause();
+        musicaFondo.currentTime = 0; // Reiniciar la música al inicio
+    });
+}
