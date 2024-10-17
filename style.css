@@ -7,9 +7,9 @@ body {
     justify-content: center;
     text-align: center;
     overflow: hidden; /* Evitar desplazamiento */
-    height: 100vh;
+    height: auto;
     margin: 0;
-    background-image: url('media/pared-textura-hormigon-azul-marino-solido_53876-124584.avif'); /* Ruta de la imagen */
+    background: linear-gradient(301deg, rgb(245, 232, 255) 0%, hsl(263, 100%, 58%) 100%);
     background-size: cover; /* Ajusta el tamaño para cubrir toda la pantalla */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -38,8 +38,20 @@ h1.titulo {
 }
 
 .content {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+}
+
+
+.imagen1 {
+    border: 5px solid #f8d34d; /* Borde amarillo vibrante */
+    border-radius: 15px;       /* Bordes redondeados */
+    width: 30%;               /* Ajustar al 100% del contenedor */
+    max-width: 500px;          /* Tamaño máximo */
+    height: auto;              /* Mantener la proporción */
+
+
 }
 
 h2 {
@@ -48,12 +60,13 @@ h2 {
     text-align: center; 
     margin: 20; 
     padding-right: 100px; 
+    margin-top: 40px;
 }
 
 .caja {
-    background-color: #5c75b0; 
+    background-color: rgb(163, 206, 204); 
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  
     padding: 50px; 
     width: 80%;
     max-width: 500px; 
@@ -88,7 +101,7 @@ h2 {
 .caja button {
     width: 95%; 
     padding: 18px; 
-    background-color: #4a5b8f; 
+    background-color:  #f8d34d; 
     color: #fff;
     border: none;
     border-radius: 8px; 
@@ -126,12 +139,13 @@ h2 {
 /* ESTILO SIGNUP.HTML*/
 
 .caja2 {
-    background-color: #4a5b8f; 
+    background-color: #6fabd1; 
     border-radius: 20px; 
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); 
-    padding: 50px; 
-    width: 95%; 
+    padding: 20px; 
+    width: 70%; 
     max-width: 800px; 
+   
 }
 
 label {
@@ -291,18 +305,30 @@ footer {
 }
 
 /* ESTILOS QUIZ.HTML */
-
+.colorfondo {
+    background-image: url('media/img2.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 .preguntas {
     text-align: center; 
     margin-bottom: 200px; 
+ 
 }
 
 #pregunta-texto {
-    font-size: 80px; 
+    font-size: 60px; 
     color: white; 
     margin: 0; 
     padding: 60px; 
+  
 }
 
 #opciones-lista {
@@ -331,7 +357,7 @@ footer {
 }
 
 #opciones-lista li:nth-child(2) {
-    background-color: hsl(180, 67%, 55%); 
+    background-color: hsl(200, 67%, 55%); 
 }
 
 #opciones-lista li:nth-child(3) {
